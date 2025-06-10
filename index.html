@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Feliz Dia dos Namorados ❤️</title>
+  <title>Feliz Dia dos Namorados para Minha Vitória ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Estilos Gerais */
+    /* Estilos Gerais - Fiz com todo o carinho para ela! */
     * {
       margin: 0;
       padding: 0;
@@ -17,38 +17,38 @@
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       color: #fff;
-      overflow: hidden; /* Mantém os corações fluindo por toda a tela */
+      /* overflow: hidden; REMOVIDO para permitir rolagem */
       min-height: 100vh; /* Garante que o body ocupe toda a altura */
-      display: flex; /* Para centralizar o conteúdo quando apenas uma tela está visível */
-      align-items: center;
-      justify-content: center;
+      /* display: flex; REMOVIDO */
+      /* align-items: center; REMOVIDO */
+      /* justify-content: center; REMOVIDO */
     }
 
-    /* Títulos e Parágrafos */
+    /* Títulos e Parágrafos - Pensei em cada palavra! */
     h1 {
-      margin-top: 5vh; /* Margem superior responsiva */
-      font-size: 8vw; /* Tamanho da fonte responsivo */
-      white-space: nowrap; /* Impede que o título quebre em duas linhas (se a tela for muito estreita) */
-      overflow: hidden; /* Esconde o excesso se a tela for muito estreita */
-      text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+      margin-top: 5vh;
+      font-size: 8vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     p {
-      font-size: 4.5vw; /* Tamanho da fonte responsivo */
-      margin: 3vh auto; /* Margem responsiva */
-      max-width: 90vw; /* Largura máxima responsiva */
+      font-size: 4.5vw;
+      margin: 3vh auto;
+      max-width: 90vw;
       line-height: 1.4;
     }
 
-    /* Carrossel */
+    /* Carrossel de Fotos - Nossas memórias mais lindas! */
     .slider {
       position: relative;
-      width: 90vw; /* Largura responsiva */
+      width: 90vw;
       max-width: 500px;
-      height: 45vw; /* Altura responsiva baseada na largura para manter proporção */
+      height: 45vw;
       max-height: 300px;
       overflow: hidden;
-      margin: 5vh auto; /* Margem responsiva */
+      margin: 5vh auto;
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       z-index: 1;
@@ -75,9 +75,9 @@
       100% { transform: translateX(0); }
     }
 
-    /* Corações */
+    /* Corações - Porque o nosso amor é cheio deles! */
     .heart {
-      position: fixed;
+      position: fixed; /* Fixado para flutuar por cima de tudo, inclusive da rolagem */
       width: 20px;
       height: 20px;
       background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
@@ -103,11 +103,11 @@
       display: none;
     }
 
-    /* Botões */
+    /* Botões - Para ela interagir! */
     button {
-      margin: 2vh auto; /* Margem responsiva */
-      padding: 2.5vw 6vw; /* Preenchimento responsivo */
-      font-size: 4.5vw; /* Tamanho da fonte responsivo */
+      margin: 2vh auto;
+      padding: 2.5vw 6vw;
+      font-size: 4.5vw;
       border: none;
       border-radius: 15px;
       background-color: #ee9ca7;
@@ -116,54 +116,56 @@
       transition: background-color 0.3s;
       display: inline-block;
       z-index: 2;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     #playAudio:hover, .botoes button:hover {
       background-color: #ff758c;
     }
 
-    /* Telas ocultas */
+    /* Telas - Cada uma com uma surpresa! */
     .tela {
       display: none;
-      height: 100vh;
+      min-height: 100vh; /* Permite que a tela cresça se o conteúdo for maior */
       width: 100vw;
-      position: fixed;
-      top: 0;
+      position: absolute; /* Usar absolute para não tirar do fluxo e permitir rolagem do body */
+      top: 0; /* Começa do topo */
       left: 0;
       background: linear-gradient(to bottom, #ee9ca7, #ffdde1);
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: center; /* Centraliza o conteúdo verticalmente */
       z-index: 10;
       text-align: center;
-      padding: 4vw; /* Preenchimento responsivo */
+      padding: 4vw;
+      overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo da tela exceder */
+      -webkit-overflow-scrolling: touch; /* Suaviza a rolagem em iOS */
     }
 
     .tela h2 {
-      font-size: 7vw; /* Tamanho da fonte responsivo */
-      margin-bottom: 3vh; /* Margem responsiva */
+      font-size: 7vw;
+      margin-bottom: 3vh;
     }
 
     .botoes {
       display: flex;
-      gap: 3vw; /* Espaçamento responsivo entre botões */
+      gap: 3vw;
       justify-content: center;
-      margin-top: 3vh; /* Margem responsiva */
+      margin-top: 3vh;
       position: relative;
       z-index: 2;
-      flex-wrap: wrap; /* Permite que os botões quebrem linha em telas muito pequenas */
+      flex-wrap: wrap;
     }
 
     .botoes button {
-      flex-grow: 1; /* Permite que os botões cresçam para ocupar espaço disponível */
-      max-width: 45vw; /* Limita a largura em telas maiores */
+      flex-grow: 1;
+      max-width: 45vw;
     }
 
-    /* Media Queries para Telas Maiores (Desktops/Tablets) - Reajusta para tamanhos mais fixos */
+    /* Media Queries - Para ficar perfeito no celular e no computador! */
     @media (min-width: 768px) {
       h1 {
-        font-size: 2.5em; /* Volta para tamanho fixo em desktop */
+        font-size: 2.5em;
       }
       p {
         font-size: 1.3em;
@@ -189,15 +191,15 @@
         margin-top: 20px;
       }
       .botoes button {
-        max-width: none; /* Remove a largura máxima */
+        max-width: none;
       }
     }
   </style>
 </head>
 <body>
   <div id="primeiraTela" class="tela" style="display: flex;">
-    <h1>Feliz Dia dos Namorados ❤️</h1>
-    <p>Meu amor, essa é apenas uma pequena forma de mostrar o quanto eu te amo. <br>Cada momento com você é único e especial. Obrigado por tudo! 💖</p>
+    <h1>Feliz Dia dos Namorados, Meu Amor! ❤️</h1>
+    <p>Vitória, essa é apenas uma pequena forma que encontrei de te mostrar o quanto eu te amo. <br>Cada momento ao seu lado é único e o mais especial da minha vida. Obrigado por existir! 💖</p>
 
     <div class="slider">
       <div class="slides">
@@ -207,34 +209,34 @@
       </div>
     </div>
 
-    <button id="playAudio">Tocar Música</button>
+    <button id="playAudio">Tocar Nossa Música!</button>
     <br>
-    <button id="btnProximaPrimeiraTela">Próxima Surpresa 💌</button>
+    <button id="btnProximaPrimeiraTela">Próxima Surpresa que Preparei 💌</button>
   </div>
 
   <div id="segundaTela" class="tela">
     <h2>Promete que vou ter tudo que eu quiser hoje? 😏</h2>
     <div class="botoes">
-      <button onclick="respostaSim()">Sim ❤️</button>
+      <button onclick="respostaSim()">Sim, claro! ❤️</button>
       <button id="btnNao">Não 😅</button>
     </div>
   </div>
 
   <div id="telaTempoUniverso" class="tela">
-    <h2>Nosso Tempo Juntos e o Que Aconteceu!</h2>
+    <h2>Nosso Tempo Juntos e o Que Acontecia no Universo!</h2>
     <p id="tempoConhecimento"></p>
     <p id="acontecimentosUniverso"></p>
     <div class="botoes">
-      <button id="btnProximaTelaTempoUniverso">Continuar a Surpresa ✨</button>
+      <button id="btnProximaTelaTempoUniverso">Ainda tem mais! ✨</button>
     </div>
   </div>
 
   <div id="terceiraTela" class="tela">
-    <h2>Mensagem Final para Você!</h2>
+    <h2>Minha Mensagem Final para Você, Vitória!</h2>
     <p>"Para a minha Vitória,
 
-Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desafio em nosso caminho se torne uma oportunidade para fortalecer ainda mais nosso relacionamento. Quero que você continue sendo a minha base, o meu porto seguro, e prometo zelar para que essa conexão nunca se desfaça, vivendo eternamente em meu coração, mesmo quando eu não puder mais estar aqui para testemunhar o quanto fui amado por você." <br>E sim você sempre será minha princesa! ❤️</p>
-    <p>Com amor, Pedro Henrique ❤️</p>
+Meu desejo mais profundo é que você seja **minha nene para sempre**. Que cada desafio em nosso caminho se torne uma oportunidade para fortalecer ainda mais nosso relacionamento. Quero que você continue sendo a **minha base, o meu porto seguro**, e prometo zelar para que essa conexão nunca se desfaça, vivendo eternamente em meu coração, mesmo quando eu não puder mais estar aqui para testemunhar o quanto fui amado por você." <br>E sim, você sempre será minha princesa! ❤️</p>
+    <p>Com todo o meu amor, seu Pedro Henrique ❤️</p>
   </div>
 
   <audio id="audio" loop>
@@ -243,7 +245,7 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
   </audio>
 
   <script>
-    // Corações
+    // Código para os corações flutuantes - Uma chuvinha de amor!
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -252,43 +254,45 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 5000);
     }
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 300); // Eles aparecem a cada 0.3 segundos!
 
-    // Música
+    // Para tocar nossa música especial
     const audio = document.getElementById('audio');
     document.getElementById('playAudio').addEventListener('click', () => {
       audio.play();
-      document.getElementById('playAudio').style.display = 'none';
+      document.getElementById('playAudio').style.display = 'none'; // Some o botão depois que começa a tocar
     });
 
-    // Navegação entre telas
+    // Função para mostrar as telas que preparei
     function mostrarTela(idTela) {
       document.querySelectorAll('.tela').forEach(tela => {
         tela.style.display = 'none';
       });
       document.getElementById(idTela).style.display = 'flex';
+      // Leva a tela para o topo ao exibir, garantindo que a rolagem comece do zero
+      document.getElementById(idTela).scrollTop = 0; 
     }
 
-    // Botão "Próxima Surpresa" da primeira tela
+    // Navegação para a próxima tela (da primeira surpresa)
     document.getElementById('btnProximaPrimeiraTela').addEventListener('click', () => {
       mostrarTela('segundaTela');
     });
 
-    // Botão "Continuar a Surpresa" da tela de tempo/universo
+    // Navegação para a última mensagem (depois de ver nosso tempo e o universo)
     document.getElementById('btnProximaTelaTempoUniverso').addEventListener('click', () => {
       mostrarTela('terceiraTela');
     });
 
-    // Lógica do botão "Não" que foge
+    // Essa é a brincadeira do botão "Não" que foge! ;)
     const btnNao = document.getElementById('btnNao');
     if (btnNao) {
-      // O evento 'click' já faz com que o botão fuja a cada clique
-      btnNao.addEventListener('click', () => {
+      btnNao.addEventListener('click', () => { // Ele foge toda vez que tenta clicar!
         const btnWidth = btnNao.offsetWidth;
         const btnHeight = btnNao.offsetHeight;
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
 
+        // Calculo uma nova posição aleatória pra ele não ser pego!
         const x = Math.random() * (windowWidth - btnWidth - 20) + 10;
         const y = Math.random() * (windowHeight - btnHeight - 20) + 10;
         
@@ -298,14 +302,14 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
       });
     }
 
-    // Resposta SIM na segunda tela
+    // Quando ela responder "Sim" pra minha pergunta!
     function respostaSim() {
-      calcularTempoConhecimento();
-      buscarAcontecimentosUniverso();
-      mostrarTela('telaTempoUniverso');
+      calcularTempoConhecimento(); // Calculo quanto tempo a gente tá junto
+      buscarAcontecimentosUniverso(); // E o que o universo estava fazendo por aí
+      mostrarTela('telaTempoUniverso'); // Aí mostro pra ela!
     }
 
-    // Cálculo do tempo de conhecimento (03/07/2022)
+    // Calculando o tempo exato que estamos juntos (Desde 03/07/2022)
     function calcularTempoConhecimento() {
       const dataConhecimento = new Date('2022-07-03T00:00:00'); 
       const agora = new Date();
@@ -345,7 +349,7 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
       `;
     }
 
-    // Acontecimentos do universo em 03/07/2022 (foco no cosmos)
+    // Descobri o que estava rolando no vasto universo no dia em que nos conhecemos (03/07/2022)!
     async function buscarAcontecimentosUniverso() {
       const acontecimentos = `
         Em 03 de julho de 2022, o vasto cosmos continuava sua incessante dança. Estrelas, como nosso Sol, seguiam seus ciclos de vida, fundindo hidrogênio em hélio em seus núcleos. Em galáxias distantes, novas estrelas nasciam em berçários estelares, enquanto outras, gigantes e massivas, chegavam ao fim de suas vidas em explosões de supernova, lançando elementos pesados essenciais para a formação de novos mundos.
