@@ -17,11 +17,7 @@
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       color: #fff;
-      /* overflow: hidden; REMOVIDO para permitir rolagem */
-      min-height: 100vh; /* Garante que o body ocupe toda a altura */
-      /* display: flex; REMOVIDO */
-      /* align-items: center; REMOVIDO */
-      /* justify-content: center; REMOVIDO */
+      min-height: 100vh;
     }
 
     /* Títulos e Parágrafos - Pensei em cada palavra! */
@@ -77,7 +73,7 @@
 
     /* Corações - Porque o nosso amor é cheio deles! */
     .heart {
-      position: fixed; /* Fixado para flutuar por cima de tudo, inclusive da rolagem */
+      position: fixed;
       width: 20px;
       height: 20px;
       background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
@@ -126,20 +122,38 @@
     /* Telas - Cada uma com uma surpresa! */
     .tela {
       display: none;
-      min-height: 100vh; /* Permite que a tela cresça se o conteúdo for maior */
+      min-height: 100vh;
       width: 100vw;
-      position: absolute; /* Usar absolute para não tirar do fluxo e permitir rolagem do body */
-      top: 0; /* Começa do topo */
+      position: absolute;
+      top: 0;
       left: 0;
-      background: linear-gradient(to bottom, #ee9ca7, #ffdde1);
+      /* Removendo o background linear-gradient padrão */
+      background: none; 
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* Centraliza o conteúdo verticalmente */
+      justify-content: center;
       z-index: 10;
       text-align: center;
       padding: 4vw;
-      overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo da tela exceder */
-      -webkit-overflow-scrolling: touch; /* Suaviza a rolagem em iOS */
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; /
+    }
+
+   
+    #telaTempoUniverso {
+      background-image: url('foto5.jpeg'); 
+      background-color: rgba(0, 0, 0, 0.5); 
+      background-blend-mode: overlay; 
+    }
+
+    
+    #terceiraTela {
+      background-image: url('https://images2.alphacoders.com/742/742320.png');
+      background-color: rgba(0, 200, 200, 0.4); 
+      background-blend-mode: overlay; 
     }
 
     .tela h2 {
@@ -206,10 +220,12 @@
         <img src="foto1.jpeg" alt="Foto 1">
         <img src="foto4.jpeg" alt="Foto 2">
         <img src="foto3.jpeg" alt="Foto 3">
+        <img src="foto7.jpeg" alt="Foto 4">
+        <img src="foto8.jpg" alt="Foto 5">
       </div>
     </div>
 
-    <button id="playAudio">Tocar Nossa Música!</button>
+    <button id="playAudio">Tocar Música!</button>
     <br>
     <button id="btnProximaPrimeiraTela">Próxima Surpresa que Preparei 💌</button>
   </div>
@@ -236,7 +252,7 @@
     <p>"Para a minha Vitória,
 
 Meu desejo mais profundo é que você seja **minha nene para sempre**. Que cada desafio em nosso caminho se torne uma oportunidade para fortalecer ainda mais nosso relacionamento. Quero que você continue sendo a **minha base, o meu porto seguro**, e prometo zelar para que essa conexão nunca se desfaça, vivendo eternamente em meu coração, mesmo quando eu não puder mais estar aqui para testemunhar o quanto fui amado por você." <br>E sim, você sempre será minha princesa! ❤️</p>
-    <p>Com todo o meu amor, seu Pedro Henrique ❤️</p>
+    <p>Com todo o meu amor, Pedro Henrique ❤️</p>
   </div>
 
   <audio id="audio" loop>
