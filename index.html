@@ -10,6 +10,7 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
       font-family: 'Segoe UI', sans-serif;
@@ -17,42 +18,63 @@
       color: #fff;
       overflow: hidden;
     }
+
     h1 {
       margin-top: 30px;
       font-size: 2.5em;
     }
+
     p {
       font-size: 1.3em;
       margin: 20px auto;
       max-width: 600px;
     }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .gallery img {
-      width: 100%;
+
+    /* Carrossel */
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      height: 300px;
+      overflow: hidden;
+      margin: 40px auto;
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
+      z-index: 1; /* Garante que o carrossel fique abaixo dos corações */
     }
 
+    .slides {
+      display: flex;
+      width: 300%;
+      height: 100%;
+      animation: slide 12s infinite;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Corações */
     .heart {
       position: fixed;
       width: 20px;
       height: 20px;
       background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
       background-size: contain;
-      pointer-events: none;
+      pointer-events: none; /* Impede que os corações interfiram com cliques */
       animation: fall 5s linear infinite;
       opacity: 0.7;
+      z-index: 9999; /* Garante que os corações fiquem acima de todos os elementos */
     }
 
     @keyframes fall {
@@ -81,13 +103,15 @@
       cursor: pointer;
       transition: background-color 0.3s;
       display: inline-block;
+      z-index: 2; /* Garante que o botão fique abaixo dos corações */
     }
 
     #playAudio:hover {
       background-color: #ff758c;
     }
 
-    #segundaTela {
+    /* Telas ocultas */
+    .tela {
       display: none;
       height: 100vh;
       width: 100vw;
@@ -98,11 +122,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 10;
+      z-index: 10; /* As telas ficam por cima do fundo, mas abaixo dos corações */
       text-align: center;
+      padding: 20px;
     }
 
-    #segundaTela h2 {
+    .tela h2 {
       font-size: 2em;
       margin-bottom: 30px;
     }
@@ -111,6 +136,9 @@
       display: flex;
       gap: 20px;
       justify-content: center;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2; /* Garante que os botões fiquem abaixo dos corações */
     }
 
     .botoes button {
@@ -123,7 +151,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s;
-      position: relative;
+      position: static;
     }
 
     .botoes button:hover {
@@ -132,28 +160,51 @@
   </style>
 </head>
 <body>
-  <div id="primeiraTela">
+  <div id="primeiraTela" class="tela" style="display: flex;">
     <h1>Feliz Dia dos Namorados ❤️</h1>
     <p>Meu amor, essa é apenas uma pequena forma de mostrar o quanto eu te amo. <br>Cada momento com você é único e especial. Obrigado por tudo! 💖</p>
 
-    <div class="gallery">
-      <img src="foto1.jpeg" alt="Foto 1">
-      <img src="foto4.jpeg" alt="Foto 2">
-      <img src="foto3.jpeg" alt="Foto 3">
+    <div class="slider">
+      <div class="slides">
+        <img src="foto1.jpeg" alt="Foto 1">
+        <img src="foto4.jpeg" alt="Foto 2">
+        <img src="foto3.jpeg" alt="Foto 3">
+      </div>
     </div>
 
     <button id="playAudio">Tocar Música</button>
     <br><br>
-    <button id="btnProxima">Próxima Surpresa 💌</button>
+    <button id="btnProximaPrimeiraTela">Próxima Surpresa 💌</button>
   </div>
 
-  <div id="segundaTela">
+  <div id="segundaTela" class="tela">
     <h2>Promete que vou ter tudo que eu quiser hoje? 😏</h2>
     <div class="botoes">
       <button onclick="respostaSim()">Sim ❤️</button>
       <button id="btnNao">Não 😅</button>
     </div>
   </div>
+
+  <div id="telaTempoUniverso" class="tela">
+    <h2>Nosso Tempo Juntos e o Que Aconteceu!</h2>
+    <p id="tempoConhecimento"></p>
+    <p id="acontecimentosUniverso"></p>
+    <div class="botoes">
+      <button id="btnProximaTelaTempoUniverso">Continuar a Surpresa ✨</button>
+    </div>
+  </div>
+
+  <div id="terceiraTela" class="tela">
+
+  <h2>Mensagem Final para Você!</h2>
+
+  <p>"Para a minha Vitória,
+
+Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desafio em nosso caminho se torne uma oportunidade para fortalecer ainda mais nosso relacionamento. Quero que você continue sendo a minha base, o meu porto seguro, e prometo zelar para que essa conexão nunca se desfaça, vivendo eternamente em meu coração, mesmo quando eu não puder mais estar aqui para testemunhar o quanto fui amado por você." <br>E sim você sempre será minha princesa! ❤️</p>
+
+  <p>Com amor, Pedro Henrique ❤️</p>
+
+ </div>
 
   <audio id="audio" loop>
     <source src="musica.mp3" type="audio/mpeg">
@@ -169,8 +220,10 @@
       heart.style.animationDuration = (3 + Math.random() * 2) + 's';
       document.body.appendChild(heart);
 
+      // Remove o coração após a animação para não acumular elementos no DOM
       setTimeout(() => heart.remove(), 5000);
     }
+    // Cria um novo coração a cada 300 milissegundos
     setInterval(createHeart, 300);
 
     // Música
@@ -180,27 +233,93 @@
       document.getElementById('playAudio').style.display = 'none';
     });
 
-    // Troca de tela manual
-    document.getElementById('btnProxima').addEventListener('click', () => {
-      document.getElementById('primeiraTela').style.display = 'none';
-      document.getElementById('segundaTela').style.display = 'flex';
+    // Navegação entre telas
+    function mostrarTela(idTela) {
+      document.querySelectorAll('.tela').forEach(tela => {
+        tela.style.display = 'none';
+      });
+      document.getElementById(idTela).style.display = 'flex';
+    }
+
+    // Botão "Próxima Surpresa" da primeira tela
+    document.getElementById('btnProximaPrimeiraTela').addEventListener('click', () => {
+      mostrarTela('segundaTela');
     });
 
-    // Botão "Não" escapa
+    // Botão "Continuar a Surpresa" da tela de tempo/universo
+    document.getElementById('btnProximaTelaTempoUniverso').addEventListener('click', () => {
+      mostrarTela('terceiraTela');
+    });
+
+    // Lógica do botão "Não" que foge
     const btnNao = document.getElementById('btnNao');
-    btnNao.addEventListener('mouseenter', () => {
-      const x = Math.random() * (window.innerWidth - 150);
-      const y = Math.random() * (window.innerHeight - 100);
-      btnNao.style.position = 'absolute';
-      btnNao.style.left = `${x}px`;
-      btnNao.style.top = `${y}px`;
-    });
+    if (btnNao) {
+      btnNao.addEventListener('mouseenter', () => {
+        const x = Math.random() * (window.innerWidth - btnNao.offsetWidth - 40); // Ajusta margem para não sair da tela
+        const y = Math.random() * (window.innerHeight - btnNao.offsetHeight - 40); // Ajusta margem para não sair da tela
+        btnNao.style.position = 'absolute';
+        btnNao.style.left = `${x}px`;
+        btnNao.style.top = `${y}px`;
+      });
+    }
 
-    // Resposta SIM
+    // Resposta SIM na segunda tela
     function respostaSim() {
-      document.getElementById('segundaTela').innerHTML = `
-        <h2>Sabia que você diria sim! 😍</h2>
-        <p>Te amo muito! ❤️</p>
+      calcularTempoConhecimento();
+      buscarAcontecimentosUniverso();
+      mostrarTela('telaTempoUniverso');
+    }
+
+    // Cálculo do tempo de conhecimento (03/07/2022)
+    function calcularTempoConhecimento() {
+      const dataConhecimento = new Date('2022-07-03T00:00:00'); 
+      const agora = new Date();
+      const diferencaTempo = agora - dataConhecimento;
+
+      const segundos = Math.floor(diferencaTempo / 1000);
+      const minutos = Math.floor(segundos / 60);
+      const horas = Math.floor(minutos / 60);
+      const dias = Math.floor(horas / 24);
+      const anos = Math.floor(dias / 365.25);
+
+      const dataInicial = new Date('2022-07-03T00:00:00');
+      const diffMeses = (agora.getFullYear() - dataInicial.getFullYear()) * 12 + (agora.getMonth() - dataInicial.getMonth());
+      
+      let mesesExatos = diffMeses;
+      let anosExatos = Math.floor(mesesExatos / 12);
+      let mesesRestantes = mesesExatos % 12;
+
+      let dataUltimoMesCompleto = new Date(agora.getFullYear(), agora.getMonth() - mesesRestantes, dataInicial.getDate());
+      if (dataUltimoMesCompleto > agora) {
+          mesesRestantes--;
+          if (mesesRestantes < 0) {
+              mesesRestantes += 12;
+              anosExatos--;
+          }
+          dataUltimoMesCompleto = new Date(agora.getFullYear(), agora.getMonth() - mesesRestantes, dataInicial.getDate());
+      }
+      const diasDoMesAtual = Math.floor((agora - dataUltimoMesCompleto) / (1000 * 60 * 60 * 24));
+
+
+      document.getElementById('tempoConhecimento').innerHTML = `
+        Estamos juntos há:<br>
+        <strong>${anosExatos}</strong> anos,
+        <strong>${mesesRestantes}</strong> meses e
+        <strong>${diasDoMesAtual}</strong> dias!
+        <br>Isso significa um total de <strong>${dias}</strong> dias e <strong>${horas % 24}</strong> horas!
+      `;
+    }
+
+    // Acontecimentos do universo em 03/07/2022 
+    async function buscarAcontecimentosUniverso() {
+      const acontecimentos = `
+        Em 03 de julho de 2022, o vasto cosmos continuava sua incessante dança. Estrelas, como nosso Sol, seguiam seus ciclos de vida, fundindo hidrogênio em hélio em seus núcleos. Em galáxias distantes, novas estrelas nasciam em berçários estelares, enquanto outras, gigantes e massivas, chegavam ao fim de suas vidas em explosões de supernova, lançando elementos pesados essenciais para a formação de novos mundos.
+        Buracos negros, supermassivos em centros galácticos e estelares residuais, continuavam a exercer sua poderosa força gravitacional. A expansão do universo prosseguia, com galáxias e aglomerados de galáxias se afastando cada vez mais uns dos outros, levando à diluição da matéria e da energia cósmica. Ondas gravitacionais, ecos de eventos cataclísmicos como a fusão de buracos negros ou estrelas de nêutrons, viajavam pelo espaço-tempo, indetectáveis para nós naquele momento sem instrumentos específicos.
+        O Sistema Solar continuava sua órbita ao redor do centro da Via Láctea, com a Terra girando em seu eixo e orbitando o Sol, num balé celeste que se repete há bilhões de anos.
+      `;
+      document.getElementById('acontecimentosUniverso').innerHTML = `
+        <h3>O que acontecia no vasto universo quando nos conhecemos:</h3>
+        ${acontecimentos}
       `;
     }
   </script>
