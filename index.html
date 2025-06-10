@@ -5,6 +5,7 @@
   <title>Feliz Dia dos Namorados ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Estilos Gerais */
     * {
       margin: 0;
       padding: 0;
@@ -16,31 +17,41 @@
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       color: #fff;
-      overflow: hidden;
+      overflow: hidden; /* Mantém os corações fluindo por toda a tela */
+      min-height: 100vh; /* Garante que o body ocupe toda a altura */
+      display: flex; /* Para centralizar o conteúdo quando apenas uma tela está visível */
+      align-items: center;
+      justify-content: center;
     }
 
+    /* Títulos e Parágrafos */
     h1 {
-      margin-top: 30px;
-      font-size: 2.5em;
+      margin-top: 5vh; /* Margem superior responsiva */
+      font-size: 8vw; /* Tamanho da fonte responsivo */
+      white-space: nowrap; /* Impede que o título quebre em duas linhas (se a tela for muito estreita) */
+      overflow: hidden; /* Esconde o excesso se a tela for muito estreita */
+      text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
     }
 
     p {
-      font-size: 1.3em;
-      margin: 20px auto;
-      max-width: 600px;
+      font-size: 4.5vw; /* Tamanho da fonte responsivo */
+      margin: 3vh auto; /* Margem responsiva */
+      max-width: 90vw; /* Largura máxima responsiva */
+      line-height: 1.4;
     }
 
     /* Carrossel */
     .slider {
       position: relative;
-      width: 90%;
+      width: 90vw; /* Largura responsiva */
       max-width: 500px;
-      height: 300px;
+      height: 45vw; /* Altura responsiva baseada na largura para manter proporção */
+      max-height: 300px;
       overflow: hidden;
-      margin: 40px auto;
+      margin: 5vh auto; /* Margem responsiva */
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      z-index: 1; /* Garante que o carrossel fique abaixo dos corações */
+      z-index: 1;
     }
 
     .slides {
@@ -71,10 +82,10 @@
       height: 20px;
       background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
       background-size: contain;
-      pointer-events: none; /* Impede que os corações interfiram com cliques */
+      pointer-events: none;
       animation: fall 5s linear infinite;
       opacity: 0.7;
-      z-index: 9999; /* Garante que os corações fiquem acima de todos os elementos */
+      z-index: 9999;
     }
 
     @keyframes fall {
@@ -92,10 +103,11 @@
       display: none;
     }
 
-    #playAudio {
-      margin: 20px auto;
-      padding: 10px 25px;
-      font-size: 1.2em;
+    /* Botões */
+    button {
+      margin: 2vh auto; /* Margem responsiva */
+      padding: 2.5vw 6vw; /* Preenchimento responsivo */
+      font-size: 4.5vw; /* Tamanho da fonte responsivo */
       border: none;
       border-radius: 15px;
       background-color: #ee9ca7;
@@ -103,10 +115,11 @@
       cursor: pointer;
       transition: background-color 0.3s;
       display: inline-block;
-      z-index: 2; /* Garante que o botão fique abaixo dos corações */
+      z-index: 2;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
     }
 
-    #playAudio:hover {
+    #playAudio:hover, .botoes button:hover {
       background-color: #ff758c;
     }
 
@@ -122,40 +135,62 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 10; /* As telas ficam por cima do fundo, mas abaixo dos corações */
+      z-index: 10;
       text-align: center;
-      padding: 20px;
+      padding: 4vw; /* Preenchimento responsivo */
     }
 
     .tela h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
+      font-size: 7vw; /* Tamanho da fonte responsivo */
+      margin-bottom: 3vh; /* Margem responsiva */
     }
 
     .botoes {
       display: flex;
-      gap: 20px;
+      gap: 3vw; /* Espaçamento responsivo entre botões */
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 3vh; /* Margem responsiva */
       position: relative;
-      z-index: 2; /* Garante que os botões fiquem abaixo dos corações */
+      z-index: 2;
+      flex-wrap: wrap; /* Permite que os botões quebrem linha em telas muito pequenas */
     }
 
     .botoes button {
-      padding: 10px 20px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 10px;
-      background-color: #fff;
-      color: #ee9ca7;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-      position: static;
+      flex-grow: 1; /* Permite que os botões cresçam para ocupar espaço disponível */
+      max-width: 45vw; /* Limita a largura em telas maiores */
     }
 
-    .botoes button:hover {
-      background-color: #ffdde1;
+    /* Media Queries para Telas Maiores (Desktops/Tablets) - Reajusta para tamanhos mais fixos */
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 2.5em; /* Volta para tamanho fixo em desktop */
+      }
+      p {
+        font-size: 1.3em;
+        margin: 20px auto;
+        max-width: 600px;
+      }
+      .slider {
+        width: 500px;
+        height: 300px;
+        margin: 40px auto;
+      }
+      button {
+        padding: 10px 25px;
+        font-size: 1.2em;
+        margin: 20px auto;
+      }
+      .tela h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+      }
+      .botoes {
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .botoes button {
+        max-width: none; /* Remove a largura máxima */
+      }
     }
   </style>
 </head>
@@ -173,7 +208,7 @@
     </div>
 
     <button id="playAudio">Tocar Música</button>
-    <br><br>
+    <br>
     <button id="btnProximaPrimeiraTela">Próxima Surpresa 💌</button>
   </div>
 
@@ -195,16 +230,12 @@
   </div>
 
   <div id="terceiraTela" class="tela">
-
-  <h2>Mensagem Final para Você!</h2>
-
-  <p>"Para a minha Vitória,
+    <h2>Mensagem Final para Você!</h2>
+    <p>"Para a minha Vitória,
 
 Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desafio em nosso caminho se torne uma oportunidade para fortalecer ainda mais nosso relacionamento. Quero que você continue sendo a minha base, o meu porto seguro, e prometo zelar para que essa conexão nunca se desfaça, vivendo eternamente em meu coração, mesmo quando eu não puder mais estar aqui para testemunhar o quanto fui amado por você." <br>E sim você sempre será minha princesa! ❤️</p>
-
-  <p>Com amor, Pedro Henrique ❤️</p>
-
- </div>
+    <p>Com amor, Pedro Henrique ❤️</p>
+  </div>
 
   <audio id="audio" loop>
     <source src="musica.mp3" type="audio/mpeg">
@@ -219,11 +250,8 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (3 + Math.random() * 2) + 's';
       document.body.appendChild(heart);
-
-      // Remove o coração após a animação para não acumular elementos no DOM
       setTimeout(() => heart.remove(), 5000);
     }
-    // Cria um novo coração a cada 300 milissegundos
     setInterval(createHeart, 300);
 
     // Música
@@ -254,9 +282,16 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
     // Lógica do botão "Não" que foge
     const btnNao = document.getElementById('btnNao');
     if (btnNao) {
-      btnNao.addEventListener('mouseenter', () => {
-        const x = Math.random() * (window.innerWidth - btnNao.offsetWidth - 40); // Ajusta margem para não sair da tela
-        const y = Math.random() * (window.innerHeight - btnNao.offsetHeight - 40); // Ajusta margem para não sair da tela
+      // O evento 'click' já faz com que o botão fuja a cada clique
+      btnNao.addEventListener('click', () => {
+        const btnWidth = btnNao.offsetWidth;
+        const btnHeight = btnNao.offsetHeight;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        const x = Math.random() * (windowWidth - btnWidth - 20) + 10;
+        const y = Math.random() * (windowHeight - btnHeight - 20) + 10;
+        
         btnNao.style.position = 'absolute';
         btnNao.style.left = `${x}px`;
         btnNao.style.top = `${y}px`;
@@ -310,7 +345,7 @@ Meu desejo mais profundo é que você seja minha nene para sempre. Que cada desa
       `;
     }
 
-    // Acontecimentos do universo em 03/07/2022 
+    // Acontecimentos do universo em 03/07/2022 (foco no cosmos)
     async function buscarAcontecimentosUniverso() {
       const acontecimentos = `
         Em 03 de julho de 2022, o vasto cosmos continuava sua incessante dança. Estrelas, como nosso Sol, seguiam seus ciclos de vida, fundindo hidrogênio em hélio em seus núcleos. Em galáxias distantes, novas estrelas nasciam em berçários estelares, enquanto outras, gigantes e massivas, chegavam ao fim de suas vidas em explosões de supernova, lançando elementos pesados essenciais para a formação de novos mundos.
